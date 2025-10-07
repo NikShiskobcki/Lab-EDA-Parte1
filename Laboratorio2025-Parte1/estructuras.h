@@ -1,19 +1,33 @@
 #ifndef ESTRUCTURAS_H
 #define ESTRUCTURAS_H
 
-#include <string>
-using namespace std;
-
 enum _retorno{
-	OK, ERROR, NO_IMPLEMENTADA
+    OK, ERROR, NO_IMPLEMENTADA
 };
 typedef enum _retorno TipoRet;
 
-struct _archivo{
-	string titulo;
-	string version;
-	string contenido;
-	_archivo* sig;
+/********************************************/
+typedef char* Cadena;
+
+struct _linea {
+    unsigned int nroLinea;
+    Cadena texto = new char[100];
+    _linea* sig;
 };
+
+typedef _linea* Linea;
+
+
+struct _archivo{
+    Cadena titulo;
+    Cadena version;
+    _linea* contenido;
+    _archivo* sig;
+};
+
+
+/******************************************/
+
 typedef _archivo* Archivo;
-#endif
+
+#endi
