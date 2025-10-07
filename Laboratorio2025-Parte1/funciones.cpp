@@ -1,33 +1,74 @@
-#ifndef ESTRUCTURAS_H
-#define ESTRUCTURAS_H
+#include "estructuras.h"
+#include "prototipos.h"
+#include <string>
+using namespace std;
 
-enum _retorno{
-    OK, ERROR, NO_IMPLEMENTADA
-};
-typedef enum _retorno TipoRet;
+Archivo CrearArchivo(char * nombre){
+    Archivo nuevoArchivo = new _archivo;
+    nuevoArchivo -> titulo = nombre;
+    //cuando se haga la funcion CrearVersion, nuevoArchivo->version se inicializa en NULL
+    nuevoArchivo -> version = "1";
+    nuevoArchivo -> contenido = NULL;
+    nuevoArchivo -> sig = NULL;
+    return nuevoArchivo;
+}
 
-/********************************************/
-typedef char* Cadena;
-
-struct _linea {
-    unsigned int nroLinea;
-    Cadena texto = new char[100];
-    _linea* sig;
-};
-
-typedef _linea* Linea;
-
-
-struct _archivo{
-    Cadena titulo;
-    Cadena version;
-    _linea* contenido;
-    _archivo* sig;
-};
+TipoRet BorrarVersion(Archivo &a, char * version){
+    delete a;
+    return OK;
+}
 
 
-/******************************************/
+int cantLineas(Archivo a) {
+    int contador = 0;
+    Linea aux = a->contenido;
+    while(aux != NULL) {
+        contador++;
+        aux = aux->sig;
+    }
+    return contador;
+}
 
-typedef _archivo* Archivo;
+void actualizarLineas(Archivo &a) {
+    Linea aux = a->contenido;
+    unsigned int nL = 1;
+    while (aux != NULL) {
+        aux->nroLinea = nL++;
+        aux = aux->sig;
+    }
+}
 
-#endi
+TipoRet InsertarLinea(Archivo &a, char * version, char * linea, unsigned int nroLinea) {
+    if (nroLinea == 0 || nroLinea > cantLineas(a)+1) {
+        return ERROR;
+    }
+
+    //creo la linea
+    Linea l = new _linea;
+    strcpy(l->texto, linea);
+    l->sig = NULL;
+
+    //inserta al principio
+    if (nroLinea == 1) {
+        l->sig = a->contenido;
+        a->contenido = l;
+        actualizarLineas(a);
+        return  OK;
+    }
+
+    //el for recorre la lista hasta encontrar la posicion de nroLinea
+    // linea anterior es para no perder la lista al insertar en el medio
+    Linea anterior = a->contenido;
+    for (unsigned int i = 1; i < nroLinea-1; i++) {
+        anterior = anterior->sig;
+    }
+
+    l->sig = anterior->sig;
+    anterior->sig = l;
+    actualizarLineas(a);
+    return OK;
+}
+
+TipoRet BorrarLinea(Archivo &a, char * version, unsigned int nroLinea) {
+    return NO_IMPLEMENTADA;
+}
