@@ -1,17 +1,33 @@
-#include "estructuras.h"
+#ifndef ESTRUCTURAS_H
+#define ESTRUCTURAS_H
 
-#include <string>
-using namespace std;
+enum _retorno{
+    OK, ERROR, NO_IMPLEMENTADA
+};
+typedef enum _retorno TipoRet;
 
-Archivo CrearArchivo(char * nombre){
-	Archivo nuevoArchivo = new _archivo;
-	nuevoArchivo -> titulo = nombre;
-	nuevoArchivo -> version = '1';
-	nuevoArchivo -> sig = NULL;
-	return nuevoArchivo;
-}
-	
-TipoRet BorrarVersion(Archivo &a, char * version){
-	
-}
-	
+/********************************************/
+typedef char* Cadena;
+
+struct _linea {
+    unsigned int nroLinea;
+    Cadena texto = new char[100];
+    _linea* sig;
+};
+
+typedef _linea* Linea;
+
+
+struct _archivo{
+    Cadena titulo;
+    Cadena version;
+    _linea* contenido;
+    _archivo* sig;
+};
+
+
+/******************************************/
+
+typedef _archivo* Archivo;
+
+#endi
