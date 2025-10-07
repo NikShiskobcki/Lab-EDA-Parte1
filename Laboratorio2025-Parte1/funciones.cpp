@@ -13,6 +13,7 @@ Archivo CrearArchivo(char * nombre){
     return nuevoArchivo;
 }
 
+//modificar para eliminar las lineas que haya adentro
 TipoRet BorrarVersion(Archivo &a, char * version){
     delete a;
     return OK;
