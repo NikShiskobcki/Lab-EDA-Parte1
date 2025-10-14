@@ -1,10 +1,7 @@
 #ifndef PROTOTIPOS_H
 #define PROTOTIPOS_H
 
-
 void muestroRetorno(TipoRet retorno);
-TipoRet creoA(Archivo &a);
-TipoRet borroA(Archivo &a);
 TipoRet inserto(Archivo &a, Cadena parametros[]);
 TipoRet borroL(Archivo &a, Cadena parametros[]);
 TipoRet muestroT(Archivo a, Cadena parametros[]);
