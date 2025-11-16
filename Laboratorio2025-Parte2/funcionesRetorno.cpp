@@ -12,7 +12,7 @@ TipoRet creoV(Archivo &a, Cadena parametros[]){
 	strcpy(version, parametros[2]);
 	return CrearVersion(a, version);
 }
-	
+
 TipoRet muestroV(Archivo &a){
 	return MostrarVersiones(a);
 }
@@ -25,7 +25,7 @@ TipoRet borroV(Archivo &a, Cadena parametros[]){
 	strcpy(version, parametros[2]);
 	return BorrarVersion(a, version);
 }
-	
+
 TipoRet inserto(Archivo &a, Cadena parametros[]) {
     if (a==NULL)
         return ERROR;
@@ -69,15 +69,13 @@ TipoRet muestroC(Archivo a, Cadena parametros[]){
 }
 
 
-
-
 TipoRet igual(Archivo a, Cadena parametros[]){
 	Cadena version1 = new char[10];
 	strcpy(version1, parametros[2]);
-	
+
 	Cadena version2 = new char[10];
 	strcpy(version2, parametros[3]);
-	
+
 	bool iguales;
 	return Iguales(a,version1,version2,iguales);
 }
