@@ -10,19 +10,27 @@ typedef enum _retorno TipoRet;
 /********************************************/
 typedef char* Cadena;
 
+struct _historial {
+    unsigned int nroInsercion;
+    unsigned int nroEliminacion;
+    Cadena texto = new char[100];
+    Cadena estado= new char[2];
+    _historial* sig = NULL;
+};typedef _historial* Historial;
+
 struct _linea {
     unsigned int nroLinea;
-	unsigned int nroInsercion;
     Cadena texto = new char[100];
     _linea* sig;
-	Cadena estado= new char[2];
+    Cadena estado= new char[2];
 };
 typedef _linea* Linea;
 
 struct  _version {
     Cadena nroVersion;
     _linea* contenido = NULL;
-	_version* versionPadre;
+    _historial* cambios = NULL;
+    _version* versionPadre;
     _version* subVersion = NULL;
     _version* sigVersion = NULL;
 };
