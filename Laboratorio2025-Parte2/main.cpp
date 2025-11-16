@@ -45,15 +45,15 @@ int main (int argc, char *argv[]) {
 			case crearV:
 				muestroRetorno(creoV(a,parametros));
 				break;
-				
+
 			case mostrarV:
 				muestroRetorno(muestroV(a));
 				break;
-			
+
 			case borrarV:
 				muestroRetorno(borroV(a,parametros));
 				break;
-			
+
             case insertar:
                 muestroRetorno(inserto(a, parametros));
                 break;
@@ -65,11 +65,11 @@ int main (int argc, char *argv[]) {
             case mostrarT:
                 muestroRetorno(muestroT(a,parametros));
                 break;
-				
+
 			case mostrarC:
 				muestroRetorno(muestroC(a,parametros));
 				break;
-				
+
 			case sonIguales:
 				muestroRetorno(igual(a,parametros));
 				break;
@@ -85,7 +85,7 @@ int main (int argc, char *argv[]) {
             default:
                 muestroRetorno(ERROR);
         }
-       // __fpurge(stdin);
+       __fpurge(stdin);
         strcpy(comando,"");
 
         while (strlen(comando)==0) {
